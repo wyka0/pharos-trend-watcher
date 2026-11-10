@@ -14,7 +14,7 @@ Full transcript: [`SUBMISSION_EVIDENCE.md`](./SUBMISSION_EVIDENCE.md) · machine
 
 | Event | Detail | Receipt |
 | --- | --- | --- |
-| **Trend trigger → on-chain action** | 3rd consecutive live USDC-vault drop observed by 4 separate OS processes; `trendProofDigest` anchored via `TrendAnchor.anchor()` (`ANCHOR_CONTRACT` mode) | [`0x153cf22b4cebbdcb3d5e07099d8595c05dd3799f677f021670d1aecc552cf27e`](https://atlantic.pharosscan.xyz/tx/0x153cf22b4cebbdcb3d5e07099d8595c05dd3799f677f021670d1aecc552cf27e) |
+| **Trend trigger → on-chain action** | 3rd consecutive live USDC-vault drop observed by 4 separate OS processes; `trendProofDigest` anchored via `TrendAnchor.anchor()` (`ANCHOR_CONTRACT` mode) | [`0x4b941fccf12c5ad2f49a89420fd801da7ddf79f3768c699ee87cf76b433ce437`](https://atlantic.pharosscan.xyz/tx/0x4b941fccf12c5ad2f49a89420fd801da7ddf79f3768c699ee87cf76b433ce437) |
 | **TrendAnchor contract (deploy tx)** | On-chain Proof-of-Trend registry deployed & used by the watcher | deploy [`0x723b9f73f7ce3b2aabb98d0575c59f88bc08704be97e9ab6274074d82bd2be00`](https://atlantic.pharosscan.xyz/tx/0x723b9f73f7ce3b2aabb98d0575c59f88bc08704be97e9ab6274074d82bd2be00) → contract [`0x2ceb8febb268f04dd11636e23e03b245c65922a1`](https://atlantic.pharosscan.xyz/address/0x2ceb8febb268f04dd11636e23e03b245c65922a1) |
 | Live metric drains (Phase C) | 4 × dust USDC transfers to treasury created the *genuine* falling vault balance the watcher observed | see `evidence/trend-run-evidence.json` → `phaseC_confirmedTrendOnChain.runs` |
 
@@ -24,7 +24,7 @@ Full transcript: [`SUBMISSION_EVIDENCE.md`](./SUBMISSION_EVIDENCE.md) · machine
 | --- | --- | --- |
 | **A — Single-spike rejection** | `100 → 75 (-2500 bps spike) → 99 (recovery)` across 3 cold processes: spike flagged (`isOutlier=true`), streak reset to 0, status `SPIKE_REJECTED`, **0 tx broadcast, trigger count 0 — ever** | PIDs in evidence |
 | **B — Restart + duplicate replay** | Same block/window re-polled → deduplicated (history unchanged); **hard process kill mid-run** → WAL tail recovered on next cold start, history intact, **zero duplication**; keccak hash chain intact | `duplicatesIgnored: 1→2`, `walRecovered: 1`, `integrity: OK` |
-| **C — Confirmed trend → on-chain action** | **Live** Pharos USDC vault balance `19.2884 → 19.2883 → 19.2882 → 19.2881` observed across 4 cold processes; trigger pinpointed at observation **#4 (exactly the 3rd consecutive drop)**; real anchor tx; next check while still falling → `COOLDOWN`, **no duplicate tx** | streaks `0,1,2,3`, trigger tx above |
+| **C — Confirmed trend → on-chain action** | **Live** Pharos USDC vault balance `19.288 → 19.2879 → 19.2878 → 19.2877` observed across 4 cold processes; trigger pinpointed at observation **#4 (exactly the 3rd consecutive drop)**; real anchor tx; next check while still falling → `COOLDOWN`, **no duplicate tx** | streaks `0,1,2,3`, trigger tx above |
 
 ---
 
@@ -66,7 +66,7 @@ Test Files  8 passed (8)
 | **01 — Persistent cross-run storage (not in-memory)** | Every `runCheck()` loads history from disk, appends, evaluates, persists, exits | `src/lib/storage.ts` — `PersistentTrendStore`: atomic write (`tmp → fsync → rename`) to `.data/watcher-state.json`, append-only fsync'd `.data/observations.wal.jsonl` | 58 storage tests + all CLI/API runs are new processes |
 | **02 — Configurable multi-observation rule (≥ 3)** | Three DSL modes; `requiredObservations < 3` structurally rejected | `src/lib/rules.ts` — `CONSECUTIVE_MONOTONIC`, `CUMULATIVE_DELTA_BPS`, `MOVING_WINDOW_DURATION` (≥ 1 min), `RuleValidationError` | 70 rule tests; live `/api/config` returns 400 for `2` |
 | **03 — Crash & restart resilience** | Deterministic idempotency key; restart never loses history, replay never duplicates | `observationId = keccak256(watcherId, blockNumber, metricSource, canonicalTimestampBucket)`; WAL tail replay + dedup | Phase B live; SIGKILL CLI test; 5×-replay test |
-| **04 — Full stored history + exact trigger pinpointing** | Complete timeline (index, id, PID, block, ts, value, Δbps, streak, status) + `TriggerMomentRecord` with window slice & txHash | `src/lib/types.ts`, UI timeline, `TriggerMomentRecord` | Evidence tables; live trigger at obs #4, block 32543450 |
+| **04 — Full stored history + exact trigger pinpointing** | Complete timeline (index, id, PID, block, ts, value, Δbps, streak, status) + `TriggerMomentRecord` with window slice & txHash | `src/lib/types.ts`, UI timeline, `TriggerMomentRecord` | Evidence tables; live trigger at obs #4, block 32550552 |
 | **05 — Single-spike rejection demo** | `100 → 75 → 99` never acts; `100 → 95 → 91 → 86` acts exactly at drop #3 | `evaluateNewObservation` streak + outlier logic | Phase A live + dedicated tests in both rule and CLI suites |
 
 ---

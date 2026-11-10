@@ -360,6 +360,18 @@ async function main(): Promise<void> {
     assertions.push(assert('C: native proof tx confirmed', receipt.status === 'success', `status=${receipt.status}`));
   }
 
+  // Enrich with deploy info from the anchor cache (written by the triggering child).
+  try {
+    const anchorCacheFile = path.join(store.paths.dataDir, 'anchor-contract.json');
+    if (onChainProof && fs.existsSync(anchorCacheFile)) {
+      const cache = JSON.parse(fs.readFileSync(anchorCacheFile, 'utf8')) as { txHash?: string; address?: string };
+      (onChainProof as Record<string, unknown>).deployTxHash = cache.txHash ?? null;
+      (onChainProof as Record<string, unknown>).contractAddress = cache.address ?? null;
+    }
+  } catch {
+    /* cache unreadable — event-decoded proof stands */
+  }
+
   // ================================================================ evidence
   const allPassed = assertions.every((a) => a.pass);
   const state = store.loadCommittedState().state;
@@ -438,8 +450,21 @@ async function main(): Promise<void> {
   if (c4?.action?.txHash) {
     md.push(`| C | Trend trigger → protective on-chain action (${c4.action.mode}) | \`${c4.action.txHash}\` | [PharosScan](${c4.action.explorerUrl ?? txExplorerUrl(env.explorerUrl, c4.action.txHash)}) |`);
   }
-  if (onChainProof && (onChainProof as { anchorAddress?: string }).anchorAddress) {
-    md.push(`| C | TrendAnchor contract | ${(onChainProof as { anchorAddress: string }).anchorAddress} | [address](${env.explorerUrl}/address/${(onChainProof as { anchorAddress: string }).anchorAddress}) |`);
+  const anchorAddress = (onChainProof as { anchorAddress?: string } | null)?.anchorAddress;
+  if (anchorAddress) {
+    md.push(`| C | TrendAnchor contract (on-chain Proof-of-Trend registry) | contract \`0x…\` | [address](${env.explorerUrl}/address/${anchorAddress}) |`);
+  }
+  // The deployment tx lives in the anchor cache (written by the triggering child).
+  const anchorCacheFile = path.join(store.paths.dataDir, 'anchor-contract.json');
+  if (fs.existsSync(anchorCacheFile)) {
+    try {
+      const cache = JSON.parse(fs.readFileSync(anchorCacheFile, 'utf8')) as { txHash?: string; address?: string };
+      if (cache.txHash) {
+        md.push(`| C | TrendAnchor deploy tx → contract \`${cache.address}\` | \`${cache.txHash}\` | [PharosScan](${txExplorerUrl(env.explorerUrl, cache.txHash)}) |`);
+      }
+    } catch {
+      /* cache unreadable — address row above still carries the contract */
+    }
   }
   md.push('');
 

@@ -183,7 +183,7 @@ export interface RunCheckCliOutput {
   triggered: boolean;
   reason: string;
   actionError?: string | null;
-  action: { txHash: string | null; explorerUrl: string | null; mode: string | null } | null;
+  action: { txHash: string | null; explorerUrl: string | null; mode: string | null; anchorAddress?: string | null } | null;
   cooldownUntil: number | null;
   phase: string;
   historyLength: number;

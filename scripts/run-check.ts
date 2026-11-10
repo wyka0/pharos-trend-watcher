@@ -228,7 +228,12 @@ async function main(): Promise<never> {
       reason: result.reason,
       actionError: result.triggerRecord?.actionError ?? null,
       action: result.action
-        ? { txHash: result.action.txHash, explorerUrl: result.action.explorerUrl, mode: result.action.mode }
+        ? {
+            txHash: result.action.txHash,
+            explorerUrl: result.action.explorerUrl,
+            mode: result.action.mode,
+            anchorAddress: result.action.anchorAddress ?? null,
+          }
         : null,
       cooldownUntil: result.state.cooldownUntil,
       phase: result.state.phase,
