@@ -128,8 +128,8 @@ async function main(): Promise<void> {
 
   const runs: RunRecord[] = [];
   const assertions: Assertion[] = [];
-  const spawnCheck = (phase: string, label: string, extraArgs: string[]): RunRecord => {
-    const r = spawnRunCheck(['--watcher', WATCHER, ...extraArgs]);
+  const spawnCheck = async (phase: string, label: string, extraArgs: string[]): Promise<RunRecord> => {
+    const r = await spawnRunCheck(['--watcher', WATCHER, ...extraArgs]);
     const record: RunRecord = {
       phase,
       label,
@@ -147,7 +147,6 @@ async function main(): Promise<void> {
     );
     return record;
   };
-
   const waitNewBlock = async (): Promise<void> => {
     const b = await waitForBlockChange(publicClient, Number(await publicClient.getBlockNumber()));
     log(`  (advanced to block ${b})`);
@@ -161,7 +160,7 @@ async function main(): Promise<void> {
   let lastBlock = Number(await publicClient.getBlockNumber());
   for (let i = 0; i < spikeValues.length; i++) {
     if (i > 0) lastBlock = await waitForBlockChange(publicClient, lastBlock);
-    spawnCheck('A', `check #${i + 1} (value ${spikeValues[i]})`, [
+    await spawnCheck('A', `check #${i + 1} (value ${spikeValues[i]})`, [
       '--no-action',
       '--fetch-block',
       '--value',
@@ -186,14 +185,14 @@ async function main(): Promise<void> {
   // PHASE B — Process Restart + Duplicate Block Replay (Requirement 03)
   // =================================================================
   log('--- PHASE B: replay dedup + SIGKILL crash + WAL recovery ---');
-  const bReplay = spawnCheck('B', 'replay-last (same block/window re-polled)', ['--no-action', '--replay-last']);
+  const bReplay = await spawnCheck('B', 'replay-last (same block/window re-polled)', ['--no-action', '--replay-last']);
   assertions.push(
     assert('B: replay deduplicated', bReplay.json?.deduplicated === true, `dedup=${bReplay.json?.deduplicated}`),
     assert('B: duplicatesIgnored == 1', bReplay.json?.duplicatesIgnoredTotal === 1, `count=${bReplay.json?.duplicatesIgnoredTotal}`),
     assert('B: history length intact (3)', bReplay.json?.historyLength === 3, `length=${bReplay.json?.historyLength}`),
   );
 
-  const crashRun = spawnRunCheck([
+  const crashRun = await spawnRunCheck([
     '--watcher',
     WATCHER,
     '--no-action',
@@ -206,7 +205,7 @@ async function main(): Promise<void> {
   runs.push({ phase: 'B', label: 'HARD CRASH (SIGKILL mid-run, value 96)', args: ['run-check.ts', '--inject-crash=sigkill'], exit: crashRun.status, signal: crashRun.signal, pid: null, durationMs: crashRun.durationMs, json: crashRun.json });
   log(`  hard crash: signal=${crashRun.signal} exit=${crashRun.status} (WAL appended, state NOT committed)`);
 
-  const bRecovery = spawnCheck('B', 'recovery run (replay-last after crash)', ['--no-action', '--replay-last']);
+  const bRecovery = await spawnCheck('B', 'recovery run (replay-last after crash)', ['--no-action', '--replay-last']);
   assertions.push(
     assert('B: crash was abnormal (SIGKILL/137)', crashRun.signal === 'SIGKILL' || crashRun.status === 137 || crashRun.status === null || crashRun.status === 1, `signal=${crashRun.signal} exit=${crashRun.status}`),
     assert('B: WAL tail recovered', (bRecovery.json?.walRecovered ?? 0) >= 1, `walRecovered=${bRecovery.json?.walRecovered}`),
@@ -250,7 +249,7 @@ async function main(): Promise<void> {
       i < 4
         ? `live check #${i + 1}${i === 3 ? ' — 3rd consecutive drop → ACT' : ''}`
         : 'post-trigger check (same metric, falling while locked → cooldown expected)';
-    cLast = spawnCheck('C', label, liveArgs(cValues[i]));
+    cLast = await spawnCheck('C', label, liveArgs(cValues[i]));
   }
 
   const cRuns = runs.filter((r) => r.phase === 'C');

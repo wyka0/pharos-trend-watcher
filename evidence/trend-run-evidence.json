@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-11-09T20:42:29.487Z",
+    "generatedAt": "2026-11-09T22:36:09.296Z",
     "network": {
       "chainId": 688689,
       "name": "Pharos Atlantic Testnet",
@@ -23,19 +23,19 @@
     },
     "metricMode": "erc20",
     "wallet": "0x299Ce4113abF88F4997737184aa8A7a3D58AC15C",
-    "verifyPid": 5116,
+    "verifyPid": 16672,
     "runnerPids": [
-      11120,
-      17056,
-      13484,
-      16784,
+      18420,
+      5804,
+      12576,
+      5464,
       null,
-      18384,
-      12444,
-      9336,
-      1904,
-      10268,
-      17400
+      5044,
+      14020,
+      3496,
+      3828,
+      9572,
+      12896
     ],
     "toolchain": {
       "node": "v24.14.1"
@@ -63,13 +63,13 @@
           "--value",
           "100"
         ],
-        "exit": 3221226505,
+        "exit": 0,
         "signal": null,
-        "pid": 11120,
-        "durationMs": 2517,
+        "pid": 18420,
+        "durationMs": 6337,
         "json": {
           "ok": true,
-          "pid": 11120,
+          "pid": 18420,
           "watcherId": "verify",
           "dataDir": "C:\\pharos Trend Watcher\\.data\\watcher-verify",
           "mode": "observe",
@@ -78,9 +78,9 @@
           "duplicatesIgnoredTotal": 0,
           "walRecovered": 0,
           "index": 1,
-          "observationId": "0x47e76d7d7ab8bb5f74a692d2c2c35e0f8e4336c23a6e5670cea80cdba34a635e",
-          "blockNumber": 32539060,
-          "timestamp": 1794256953084,
+          "observationId": "0x609fbc3296be43785de9683c260b29f3d123f35a1b1854afba3084d2e4af1c48",
+          "blockNumber": 32543390,
+          "timestamp": 1794263777125,
           "value": 100,
           "deltaFromPrev": null,
           "deltaFromPrevBps": null,
@@ -111,11 +111,11 @@
         ],
         "exit": 0,
         "signal": null,
-        "pid": 17056,
-        "durationMs": 2377,
+        "pid": 5804,
+        "durationMs": 5855,
         "json": {
           "ok": true,
-          "pid": 17056,
+          "pid": 5804,
           "watcherId": "verify",
           "dataDir": "C:\\pharos Trend Watcher\\.data\\watcher-verify",
           "mode": "observe",
@@ -124,9 +124,9 @@
           "duplicatesIgnoredTotal": 0,
           "walRecovered": 0,
           "index": 2,
-          "observationId": "0x8359b1c5a641bffec0c518d8a09ae273bcc50896637c670fc00855af339e72f2",
-          "blockNumber": 32539061,
-          "timestamp": 1794256956702,
+          "observationId": "0x6e54b6dd20e3bf25bc44ba2cb4782afceae7e4bd7a2f056e714e90047f6d8488",
+          "blockNumber": 32543393,
+          "timestamp": 1794263783245,
           "value": 75,
           "deltaFromPrev": -25,
           "deltaFromPrevBps": -2500,
@@ -157,11 +157,11 @@
         ],
         "exit": 0,
         "signal": null,
-        "pid": 13484,
-        "durationMs": 2298,
+        "pid": 12576,
+        "durationMs": 6105,
         "json": {
           "ok": true,
-          "pid": 13484,
+          "pid": 12576,
           "watcherId": "verify",
           "dataDir": "C:\\pharos Trend Watcher\\.data\\watcher-verify",
           "mode": "observe",
@@ -170,9 +170,9 @@
           "duplicatesIgnoredTotal": 0,
           "walRecovered": 0,
           "index": 3,
-          "observationId": "0x7ff2a540b038d4cc913b1271bb83a7ca1326a9a5f6d371e3f78c71259eca826a",
-          "blockNumber": 32539066,
-          "timestamp": 1794256961119,
+          "observationId": "0x52190bfa3e4954b7d89a30dde4945a5c2738cf2c20a166d7ff9a8589f42117b7",
+          "blockNumber": 32543395,
+          "timestamp": 1794263789617,
           "value": 99,
           "deltaFromPrev": 24,
           "deltaFromPrevBps": 3200,
@@ -224,7 +224,7 @@
       {
         "name": "A: distinct PIDs (cold starts)",
         "pass": true,
-        "details": "pids=11120, 17056, 13484"
+        "details": "pids=18420, 5804, 12576"
       }
     ]
   },
@@ -243,11 +243,11 @@
         ],
         "exit": 0,
         "signal": null,
-        "pid": 16784,
-        "durationMs": 1976,
+        "pid": 5464,
+        "durationMs": 5026,
         "json": {
           "ok": true,
-          "pid": 16784,
+          "pid": 5464,
           "watcherId": "verify",
           "dataDir": "C:\\pharos Trend Watcher\\.data\\watcher-verify",
           "mode": "replay-last",
@@ -285,7 +285,7 @@
         "exit": 1,
         "signal": null,
         "pid": null,
-        "durationMs": 2170,
+        "durationMs": 5988,
         "json": null
       },
       {
@@ -300,11 +300,11 @@
         ],
         "exit": 0,
         "signal": null,
-        "pid": 18384,
-        "durationMs": 1958,
+        "pid": 5044,
+        "durationMs": 5155,
         "json": {
           "ok": true,
-          "pid": 18384,
+          "pid": 5044,
           "watcherId": "verify",
           "dataDir": "C:\\pharos Trend Watcher\\.data\\watcher-verify",
           "mode": "replay-last",
@@ -396,11 +396,11 @@
         ],
         "exit": 0,
         "signal": null,
-        "pid": 12444,
-        "durationMs": 2782,
+        "pid": 14020,
+        "durationMs": 6703,
         "json": {
           "ok": true,
-          "pid": 12444,
+          "pid": 14020,
           "watcherId": "verify",
           "dataDir": "C:\\pharos Trend Watcher\\.data\\watcher-verify",
           "mode": "observe",
@@ -409,10 +409,10 @@
           "duplicatesIgnoredTotal": 0,
           "walRecovered": 0,
           "index": 1,
-          "observationId": "0x5b8f8f16742c286d3ddc9df9b765e5adc9e55d0f0682a5047751e662ff96e6bc",
-          "blockNumber": 32539073,
-          "timestamp": 1794256969951,
-          "value": 19.2888,
+          "observationId": "0x87dbd669d1a511af28e559fed66bf528cf671c35121bca006700a16116754f8d",
+          "blockNumber": 32543408,
+          "timestamp": 1794263812523,
+          "value": 19.2884,
           "deltaFromPrev": null,
           "deltaFromPrevBps": null,
           "streakCount": 0,
@@ -440,11 +440,11 @@
         ],
         "exit": 0,
         "signal": null,
-        "pid": 9336,
-        "durationMs": 2882,
+        "pid": 3496,
+        "durationMs": 6215,
         "json": {
           "ok": true,
-          "pid": 9336,
+          "pid": 3496,
           "watcherId": "verify",
           "dataDir": "C:\\pharos Trend Watcher\\.data\\watcher-verify",
           "mode": "observe",
@@ -453,12 +453,12 @@
           "duplicatesIgnoredTotal": 0,
           "walRecovered": 0,
           "index": 2,
-          "observationId": "0x8ca8dc892bff6e5fb6b5a3dba52192c348f90e9575f40edd056793d993cf48e1",
-          "blockNumber": 32539082,
-          "timestamp": 1794256979585,
-          "value": 19.2887,
+          "observationId": "0xa9ff1cfd492613aa93f18d852f0615e02c4e656e3ba275438c3886754d93fa3f",
+          "blockNumber": 32543422,
+          "timestamp": 1794263825895,
+          "value": 19.2883,
           "deltaFromPrev": -0.00009999999999976694,
-          "deltaFromPrevBps": -0.051843556882629795,
+          "deltaFromPrevBps": -0.051844632006681185,
           "streakCount": 1,
           "ruleStatus": "ACCUMULATING",
           "isOutlier": false,
@@ -484,11 +484,11 @@
         ],
         "exit": 0,
         "signal": null,
-        "pid": 1904,
-        "durationMs": 2689,
+        "pid": 3828,
+        "durationMs": 6775,
         "json": {
           "ok": true,
-          "pid": 1904,
+          "pid": 3828,
           "watcherId": "verify",
           "dataDir": "C:\\pharos Trend Watcher\\.data\\watcher-verify",
           "mode": "observe",
@@ -497,12 +497,12 @@
           "duplicatesIgnoredTotal": 0,
           "walRecovered": 0,
           "index": 3,
-          "observationId": "0x0c6ecd979e0dcd8c1f497da09abc5763a61bcff4b81a0bcf2034f22ed5bca465",
-          "blockNumber": 32539093,
-          "timestamp": 1794256988863,
-          "value": 19.2886,
+          "observationId": "0x43b298efd62b63a07e665606c4e2d9d4fcab90733fa41f5b0e10258de3cb3b07",
+          "blockNumber": 32543435,
+          "timestamp": 1794263840210,
+          "value": 19.2882,
           "deltaFromPrev": -0.00009999999999976694,
-          "deltaFromPrevBps": -0.051843825659462245,
+          "deltaFromPrevBps": -0.0518449007946615,
           "streakCount": 2,
           "ruleStatus": "ACCUMULATING",
           "isOutlier": false,
@@ -528,11 +528,11 @@
         ],
         "exit": 0,
         "signal": null,
-        "pid": 10268,
-        "durationMs": 4818,
+        "pid": 9572,
+        "durationMs": 8791,
         "json": {
           "ok": true,
-          "pid": 10268,
+          "pid": 9572,
           "watcherId": "verify",
           "dataDir": "C:\\pharos Trend Watcher\\.data\\watcher-verify",
           "mode": "observe",
@@ -541,12 +541,12 @@
           "duplicatesIgnoredTotal": 0,
           "walRecovered": 0,
           "index": 4,
-          "observationId": "0xcffdd8e3395ac85233933da794dfc6acc768d6a33b25916ff154a10d73cafe14",
-          "blockNumber": 32539103,
-          "timestamp": 1794256998104,
-          "value": 19.2885,
+          "observationId": "0x1f1135e341c2fb75fd2b157750c68f9f0f9959d2f7f0d06c26320f3cc1ded32f",
+          "blockNumber": 32543450,
+          "timestamp": 1794263853405,
+          "value": 19.2881,
           "deltaFromPrev": -0.00009999999999976694,
-          "deltaFromPrevBps": -0.051844094439081605,
+          "deltaFromPrevBps": -0.05184516958542889,
           "streakCount": 3,
           "ruleStatus": "TRIGGERED_ACTING",
           "isOutlier": false,
@@ -554,11 +554,11 @@
           "triggered": true,
           "reason": "3 consecutive falling checks confirmed",
           "action": {
-            "txHash": "0x0fc195b320bbc90f5683bd560eb7712266980ffcfa9fc3ec9e73b71dba5a16ab",
-            "explorerUrl": "https://atlantic.pharosscan.xyz/tx/0x0fc195b320bbc90f5683bd560eb7712266980ffcfa9fc3ec9e73b71dba5a16ab",
+            "txHash": "0x153cf22b4cebbdcb3d5e07099d8595c05dd3799f677f021670d1aecc552cf27e",
+            "explorerUrl": "https://atlantic.pharosscan.xyz/tx/0x153cf22b4cebbdcb3d5e07099d8595c05dd3799f677f021670d1aecc552cf27e",
             "mode": "ANCHOR_CONTRACT"
           },
-          "cooldownUntil": 1794258798104,
+          "cooldownUntil": 1794265653405,
           "phase": "ACTED_LOCKED",
           "historyLength": 4,
           "actionError": null
@@ -576,11 +576,11 @@
         ],
         "exit": 0,
         "signal": null,
-        "pid": 17400,
-        "durationMs": 2813,
+        "pid": 12896,
+        "durationMs": 6425,
         "json": {
           "ok": true,
-          "pid": 17400,
+          "pid": 12896,
           "watcherId": "verify",
           "dataDir": "C:\\pharos Trend Watcher\\.data\\watcher-verify",
           "mode": "observe",
@@ -589,20 +589,20 @@
           "duplicatesIgnoredTotal": 0,
           "walRecovered": 0,
           "index": 5,
-          "observationId": "0x4df4083b9f893ebdd5f4663d2c225a6459eb158b576beb36afbb7ccae6b1c4d1",
-          "blockNumber": 32539115,
-          "timestamp": 1794257009059,
-          "value": 19.2884,
+          "observationId": "0x4a8f2e5f61fb3ba1b4433eefbb5701e2135ef10425ce60a7e45beaf364a33187",
+          "blockNumber": 32543464,
+          "timestamp": 1794263868772,
+          "value": 19.288,
           "deltaFromPrev": -0.00009999999999976694,
-          "deltaFromPrevBps": -0.05184436322148791,
+          "deltaFromPrevBps": -0.05184543837898338,
           "streakCount": 0,
           "ruleStatus": "COOLDOWN",
           "isOutlier": false,
-          "madScore": 1.3490025001428694,
+          "madScore": 1.349002500474133,
           "triggered": false,
           "reason": "cooldown lock (ACTED_LOCKED): hysteresis guard active, no new action",
           "action": null,
-          "cooldownUntil": 1794258798104,
+          "cooldownUntil": 1794265653405,
           "phase": "ACTED_LOCKED",
           "historyLength": 5,
           "actionError": null
@@ -611,21 +611,21 @@
     ],
     "triggerRecord": {
       "triggerObservationIndex": 4,
-      "observationId": "0xcffdd8e3395ac85233933da794dfc6acc768d6a33b25916ff154a10d73cafe14",
-      "blockNumber": 32539103,
-      "timestamp": 1794256998104,
+      "observationId": "0x1f1135e341c2fb75fd2b157750c68f9f0f9959d2f7f0d06c26320f3cc1ded32f",
+      "blockNumber": 32543450,
+      "timestamp": 1794263853405,
       "window": [
         {
           "index": 1,
-          "observationId": "0x5b8f8f16742c286d3ddc9df9b765e5adc9e55d0f0682a5047751e662ff96e6bc",
-          "observationHash": "0x507a9399f2b7df584e3f82180a89ff5d7ac967ce688f74b4bd31f2f2e4f86159",
+          "observationId": "0x87dbd669d1a511af28e559fed66bf528cf671c35121bca006700a16116754f8d",
+          "observationHash": "0xd132d6015398196cd33b9a02d4b4712cdd5f96e08931e992dcc4f49edc0f8f1e",
           "prevObservationHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
-          "runProcessPid": 12444,
-          "blockNumber": 32539073,
-          "timestamp": 1794256969951,
-          "timestampBucket": 29904282,
+          "runProcessPid": 14020,
+          "blockNumber": 32543408,
+          "timestamp": 1794263812523,
+          "timestampBucket": 29904396,
           "metricSource": "onchain_erc20_balance:0xcfC8330f4BCAB529c625D12781b1C19466A9Fc8B",
-          "value": 19.2888,
+          "value": 19.2884,
           "deltaFromPrev": null,
           "deltaFromPrevBps": null,
           "streakCount": 0,
@@ -635,17 +635,17 @@
         },
         {
           "index": 2,
-          "observationId": "0x8ca8dc892bff6e5fb6b5a3dba52192c348f90e9575f40edd056793d993cf48e1",
-          "observationHash": "0x844fc94272021c249d136a63c2a2293d8c9d8adfcd11cdde810d9737d4d2cafb",
-          "prevObservationHash": "0x507a9399f2b7df584e3f82180a89ff5d7ac967ce688f74b4bd31f2f2e4f86159",
-          "runProcessPid": 9336,
-          "blockNumber": 32539082,
-          "timestamp": 1794256979585,
-          "timestampBucket": 29904282,
+          "observationId": "0xa9ff1cfd492613aa93f18d852f0615e02c4e656e3ba275438c3886754d93fa3f",
+          "observationHash": "0x14c267d9da1779ca457852b3b4e24bfdf3de066121685fe3ca437f2047513283",
+          "prevObservationHash": "0xd132d6015398196cd33b9a02d4b4712cdd5f96e08931e992dcc4f49edc0f8f1e",
+          "runProcessPid": 3496,
+          "blockNumber": 32543422,
+          "timestamp": 1794263825895,
+          "timestampBucket": 29904397,
           "metricSource": "onchain_erc20_balance:0xcfC8330f4BCAB529c625D12781b1C19466A9Fc8B",
-          "value": 19.2887,
+          "value": 19.2883,
           "deltaFromPrev": -0.00009999999999976694,
-          "deltaFromPrevBps": -0.051843556882629795,
+          "deltaFromPrevBps": -0.051844632006681185,
           "streakCount": 1,
           "ruleStatus": "ACCUMULATING",
           "isOutlier": false,
@@ -653,17 +653,17 @@
         },
         {
           "index": 3,
-          "observationId": "0x0c6ecd979e0dcd8c1f497da09abc5763a61bcff4b81a0bcf2034f22ed5bca465",
-          "observationHash": "0xbc63eb59be9984568ad90b36beba89f5e99c2598a1d98142b5ef419132568a66",
-          "prevObservationHash": "0x844fc94272021c249d136a63c2a2293d8c9d8adfcd11cdde810d9737d4d2cafb",
-          "runProcessPid": 1904,
-          "blockNumber": 32539093,
-          "timestamp": 1794256988863,
-          "timestampBucket": 29904283,
+          "observationId": "0x43b298efd62b63a07e665606c4e2d9d4fcab90733fa41f5b0e10258de3cb3b07",
+          "observationHash": "0x169c2eead486846603e47b61b457989ff7625ba026ec90aefc35d63ac7eccd85",
+          "prevObservationHash": "0x14c267d9da1779ca457852b3b4e24bfdf3de066121685fe3ca437f2047513283",
+          "runProcessPid": 3828,
+          "blockNumber": 32543435,
+          "timestamp": 1794263840210,
+          "timestampBucket": 29904397,
           "metricSource": "onchain_erc20_balance:0xcfC8330f4BCAB529c625D12781b1C19466A9Fc8B",
-          "value": 19.2886,
+          "value": 19.2882,
           "deltaFromPrev": -0.00009999999999976694,
-          "deltaFromPrevBps": -0.051843825659462245,
+          "deltaFromPrevBps": -0.0518449007946615,
           "streakCount": 2,
           "ruleStatus": "ACCUMULATING",
           "isOutlier": false,
@@ -671,17 +671,17 @@
         },
         {
           "index": 4,
-          "observationId": "0xcffdd8e3395ac85233933da794dfc6acc768d6a33b25916ff154a10d73cafe14",
-          "observationHash": "0xfffc7c3744e34593dd04cd4ccb4ff6cd15b409433438da50914ddc523710b2a6",
-          "prevObservationHash": "0xbc63eb59be9984568ad90b36beba89f5e99c2598a1d98142b5ef419132568a66",
-          "runProcessPid": 10268,
-          "blockNumber": 32539103,
-          "timestamp": 1794256998104,
-          "timestampBucket": 29904283,
+          "observationId": "0x1f1135e341c2fb75fd2b157750c68f9f0f9959d2f7f0d06c26320f3cc1ded32f",
+          "observationHash": "0x04c1eab45bff6ff5c288ef58a4cbbf80ba7802422c7c5417fe6b110c613c3a75",
+          "prevObservationHash": "0x169c2eead486846603e47b61b457989ff7625ba026ec90aefc35d63ac7eccd85",
+          "runProcessPid": 9572,
+          "blockNumber": 32543450,
+          "timestamp": 1794263853405,
+          "timestampBucket": 29904397,
           "metricSource": "onchain_erc20_balance:0xcfC8330f4BCAB529c625D12781b1C19466A9Fc8B",
-          "value": 19.2885,
+          "value": 19.2881,
           "deltaFromPrev": -0.00009999999999976694,
-          "deltaFromPrevBps": -0.051844094439081605,
+          "deltaFromPrevBps": -0.05184516958542889,
           "streakCount": 3,
           "ruleStatus": "TRIGGERED_ACTING",
           "isOutlier": false,
@@ -689,38 +689,38 @@
         }
       ],
       "ruleHash": "0x54b8e2bcd5fea0f1c63368c9c887b92056780f34b0b15234c77e565474e19927",
-      "trendProofDigest": "0x18d77037e5f7e8876c68bc2effb56a6af3c4a2ccb8ffbc23bdfbf2458be8a010",
-      "txHash": "0x0fc195b320bbc90f5683bd560eb7712266980ffcfa9fc3ec9e73b71dba5a16ab",
-      "explorerUrl": "https://atlantic.pharosscan.xyz/tx/0x0fc195b320bbc90f5683bd560eb7712266980ffcfa9fc3ec9e73b71dba5a16ab",
+      "trendProofDigest": "0xf31b8e37d2c99c176bbe2bb963b918b67da52b3398caed13b6dea5fa0855a03b",
+      "txHash": "0x153cf22b4cebbdcb3d5e07099d8595c05dd3799f677f021670d1aecc552cf27e",
+      "explorerUrl": "https://atlantic.pharosscan.xyz/tx/0x153cf22b4cebbdcb3d5e07099d8595c05dd3799f677f021670d1aecc552cf27e",
       "actionMode": "ANCHOR_CONTRACT",
-      "anchoredAt": 1794256998287
+      "anchoredAt": 1794263853597
     },
     "action": {
-      "txHash": "0x0fc195b320bbc90f5683bd560eb7712266980ffcfa9fc3ec9e73b71dba5a16ab",
-      "explorerUrl": "https://atlantic.pharosscan.xyz/tx/0x0fc195b320bbc90f5683bd560eb7712266980ffcfa9fc3ec9e73b71dba5a16ab",
+      "txHash": "0x153cf22b4cebbdcb3d5e07099d8595c05dd3799f677f021670d1aecc552cf27e",
+      "explorerUrl": "https://atlantic.pharosscan.xyz/tx/0x153cf22b4cebbdcb3d5e07099d8595c05dd3799f677f021670d1aecc552cf27e",
       "mode": "ANCHOR_CONTRACT"
     },
     "onChainProof": {
       "mode": "ANCHOR_CONTRACT",
-      "proofDigest": "0x18d77037e5f7e8876c68bc2effb56a6af3c4a2ccb8ffbc23bdfbf2458be8a010",
+      "proofDigest": "0xf31b8e37d2c99c176bbe2bb963b918b67da52b3398caed13b6dea5fa0855a03b",
       "isAnchored": null,
       "eventDecoded": {
-        "proofDigest": "0x18d77037e5f7e8876c68bc2effb56a6af3c4a2ccb8ffbc23bdfbf2458be8a010",
+        "proofDigest": "0xf31b8e37d2c99c176bbe2bb963b918b67da52b3398caed13b6dea5fa0855a03b",
         "ruleHash": "0x54b8e2bcd5fea0f1c63368c9c887b92056780f34b0b15234c77e565474e19927",
         "watcher": "0x299Ce4113abF88F4997737184aa8A7a3D58AC15C",
         "triggerIndex": 4,
         "windowObservationHashes": [
-          "0x507a9399f2b7df584e3f82180a89ff5d7ac967ce688f74b4bd31f2f2e4f86159",
-          "0x844fc94272021c249d136a63c2a2293d8c9d8adfcd11cdde810d9737d4d2cafb",
-          "0xbc63eb59be9984568ad90b36beba89f5e99c2598a1d98142b5ef419132568a66",
-          "0xfffc7c3744e34593dd04cd4ccb4ff6cd15b409433438da50914ddc523710b2a6"
+          "0xd132d6015398196cd33b9a02d4b4712cdd5f96e08931e992dcc4f49edc0f8f1e",
+          "0x14c267d9da1779ca457852b3b4e24bfdf3de066121685fe3ca437f2047513283",
+          "0x169c2eead486846603e47b61b457989ff7625ba026ec90aefc35d63ac7eccd85",
+          "0x04c1eab45bff6ff5c288ef58a4cbbf80ba7802422c7c5417fe6b110c613c3a75"
         ],
-        "blockNumber": 32539106
+        "blockNumber": 32543451
       },
       "watcher": null,
       "triggerIndex": null,
       "txReceiptStatus": "success",
-      "blockNumber": 32539106,
+      "blockNumber": 32543451,
       "gasUsed": "146324"
     },
     "assertions": [
@@ -732,7 +732,7 @@
       {
         "name": "C: values strictly falling",
         "pass": true,
-        "details": "values=19.2888 → 19.2887 → 19.2886 → 19.2885"
+        "details": "values=19.2884 → 19.2883 → 19.2882 → 19.2881"
       },
       {
         "name": "C: streak 0→1→2→3",
@@ -752,7 +752,7 @@
       {
         "name": "C: real tx broadcast on 688689",
         "pass": true,
-        "details": "tx=0x0fc195b320bbc90f5683bd560eb7712266980ffcfa9fc3ec9e73b71dba5a16ab"
+        "details": "tx=0x153cf22b4cebbdcb3d5e07099d8595c05dd3799f677f021670d1aecc552cf27e"
       },
       {
         "name": "C: cooldown engaged (phase ACTED_LOCKED)",
@@ -777,7 +777,7 @@
       {
         "name": "C: event proofDigest == local trendProofDigest",
         "pass": true,
-        "details": "0x18d77037e5f7e887…"
+        "details": "0xf31b8e37d2c99c17…"
       },
       {
         "name": "C: event carries the exact window observation hashes",
@@ -787,7 +787,7 @@
       {
         "name": "C: anchor tx confirmed on 688689",
         "pass": true,
-        "details": "block=32539106 gas=146324"
+        "details": "block=32543451 gas=146324"
       }
     ]
   },
@@ -825,7 +825,7 @@
     {
       "name": "A: distinct PIDs (cold starts)",
       "pass": true,
-      "details": "pids=11120, 17056, 13484"
+      "details": "pids=18420, 5804, 12576"
     },
     {
       "name": "B: replay deduplicated",
@@ -880,7 +880,7 @@
     {
       "name": "C: values strictly falling",
       "pass": true,
-      "details": "values=19.2888 → 19.2887 → 19.2886 → 19.2885"
+      "details": "values=19.2884 → 19.2883 → 19.2882 → 19.2881"
     },
     {
       "name": "C: streak 0→1→2→3",
@@ -900,7 +900,7 @@
     {
       "name": "C: real tx broadcast on 688689",
       "pass": true,
-      "details": "tx=0x0fc195b320bbc90f5683bd560eb7712266980ffcfa9fc3ec9e73b71dba5a16ab"
+      "details": "tx=0x153cf22b4cebbdcb3d5e07099d8595c05dd3799f677f021670d1aecc552cf27e"
     },
     {
       "name": "C: cooldown engaged (phase ACTED_LOCKED)",
@@ -925,7 +925,7 @@
     {
       "name": "C: event proofDigest == local trendProofDigest",
       "pass": true,
-      "details": "0x18d77037e5f7e887…"
+      "details": "0xf31b8e37d2c99c17…"
     },
     {
       "name": "C: event carries the exact window observation hashes",
@@ -935,7 +935,7 @@
     {
       "name": "C: anchor tx confirmed on 688689",
       "pass": true,
-      "details": "block=32539106 gas=146324"
+      "details": "block=32543451 gas=146324"
     }
   ]
 }

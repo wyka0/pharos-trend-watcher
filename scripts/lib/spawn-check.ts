@@ -5,11 +5,17 @@
  * scripts/run-check.ts via tsx — fresh PID, fresh heap, zero in-memory state.
  * The child prints exactly one JSON line (RunCheckCliOutput) as the last
  * stdout line; human logs go to stderr.
+ *
+ * Implemented with ASYNC execFile (not spawnSync) so test workers keep their
+ * event loop responsive while the child process runs.
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { spawnSync } from 'node:child_process';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 import type { RunCheckCliOutput } from '../../src/lib/types';
+
+const execFileP = promisify(execFile);
 
 export const PROJECT_ROOT = path.resolve(__dirname, '..', '..');
 export const RUN_CHECK_SCRIPT = path.join(PROJECT_ROOT, 'scripts', 'run-check.ts');
@@ -30,18 +36,34 @@ export interface RunCheckSpawn {
   json: RunCheckCliOutput | null;
 }
 
-export function spawnRunCheck(
+export async function spawnRunCheck(
   args: string[],
   opts: { env?: Record<string, string>; cwd?: string; timeoutMs?: number } = {},
-): RunCheckSpawn {
+): Promise<RunCheckSpawn> {
   const startedAt = Date.now();
-  const result = spawnSync(process.execPath, [resolveTsxEntry(), RUN_CHECK_SCRIPT, ...args], {
-    cwd: opts.cwd ?? PROJECT_ROOT,
-    encoding: 'utf8',
-    env: { ...process.env, ...(opts.env ?? {}) },
-    timeout: opts.timeoutMs ?? 240_000,
-  });
-  const stdout = result.stdout ?? '';
+  let stdout = '';
+  let stderr = '';
+  let status: number | null = null;
+  let signal: NodeJS.Signals | null = null;
+
+  try {
+    const result = await execFileP(process.execPath, [resolveTsxEntry(), RUN_CHECK_SCRIPT, ...args], {
+      cwd: opts.cwd ?? PROJECT_ROOT,
+      env: { ...process.env, ...(opts.env ?? {}) },
+      timeout: opts.timeoutMs ?? 240_000,
+      maxBuffer: 16 * 1024 * 1024,
+    });
+    stdout = result.stdout;
+    stderr = result.stderr;
+    status = 0;
+  } catch (err) {
+    const e = err as { code?: number | string; signal?: NodeJS.Signals; stdout?: string; stderr?: string };
+    stdout = e.stdout ?? '';
+    stderr = e.stderr ?? '';
+    if (typeof e.code === 'number') status = e.code;
+    else signal = e.signal ?? null;
+  }
+
   const lines = stdout.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
   let json: RunCheckCliOutput | null = null;
   for (let i = lines.length - 1; i >= 0; i--) {
@@ -55,12 +77,13 @@ export function spawnRunCheck(
       }
     }
   }
+
   return {
-    status: result.status,
-    signal: (result.signal ?? null) as NodeJS.Signals | null,
+    status,
+    signal,
     childPid: json?.pid ?? null,
     stdout,
-    stderr: result.stderr ?? '',
+    stderr,
     durationMs: Date.now() - startedAt,
     json,
   };
