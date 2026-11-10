@@ -1,0 +1,941 @@
+{
+  "meta": {
+    "generatedAt": "2026-11-09T20:42:29.487Z",
+    "network": {
+      "chainId": 688689,
+      "name": "Pharos Atlantic Testnet",
+      "rpcHost": "atlantic.dplabs-internal.com",
+      "explorer": "https://atlantic.pharosscan.xyz"
+    },
+    "watcherId": "verify",
+    "dataDir": "C:\\pharos Trend Watcher\\.data\\watcher-verify",
+    "rule": {
+      "id": "vault-drawdown-guard",
+      "name": "Vault drawdown guard — 3 consecutive checks",
+      "mode": "CONSECUTIVE_MONOTONIC",
+      "direction": "FALLING",
+      "requiredObservations": 3,
+      "thresholdBps": 500,
+      "windowDurationMs": 180000,
+      "rejectSingleSpike": true,
+      "spikeThresholdBps": 2000,
+      "cooldownMs": 1800000
+    },
+    "metricMode": "erc20",
+    "wallet": "0x299Ce4113abF88F4997737184aa8A7a3D58AC15C",
+    "verifyPid": 5116,
+    "runnerPids": [
+      11120,
+      17056,
+      13484,
+      16784,
+      null,
+      18384,
+      12444,
+      9336,
+      1904,
+      10268,
+      17400
+    ],
+    "toolchain": {
+      "node": "v24.14.1"
+    }
+  },
+  "summary": {
+    "totalRuns": 11,
+    "totalOnChainTxs": 1,
+    "assertionsTotal": 29,
+    "assertionsPassed": 29,
+    "allPassed": true
+  },
+  "phaseA_singleSpikeRejection": {
+    "description": "100 → 75 (single -2500 bps spike, MAD/threshold outlier) → 99 (recovery). The spike resets the streak and NEVER triggers an action.",
+    "runs": [
+      {
+        "phase": "A",
+        "label": "check #1 (value 100)",
+        "args": [
+          "run-check.ts",
+          "--watcher",
+          "verify",
+          "--no-action",
+          "--fetch-block",
+          "--value",
+          "100"
+        ],
+        "exit": 3221226505,
+        "signal": null,
+        "pid": 11120,
+        "durationMs": 2517,
+        "json": {
+          "ok": true,
+          "pid": 11120,
+          "watcherId": "verify",
+          "dataDir": "C:\\pharos Trend Watcher\\.data\\watcher-verify",
+          "mode": "observe",
+          "metricSource": "synthetic_scenario",
+          "deduplicated": false,
+          "duplicatesIgnoredTotal": 0,
+          "walRecovered": 0,
+          "index": 1,
+          "observationId": "0x47e76d7d7ab8bb5f74a692d2c2c35e0f8e4336c23a6e5670cea80cdba34a635e",
+          "blockNumber": 32539060,
+          "timestamp": 1794256953084,
+          "value": 100,
+          "deltaFromPrev": null,
+          "deltaFromPrevBps": null,
+          "streakCount": 0,
+          "ruleStatus": "ACCUMULATING",
+          "isOutlier": false,
+          "madScore": null,
+          "triggered": false,
+          "reason": "accumulating: 0/3 consecutive falling checks",
+          "action": null,
+          "cooldownUntil": null,
+          "phase": "IDLE",
+          "historyLength": 1,
+          "actionError": null
+        }
+      },
+      {
+        "phase": "A",
+        "label": "check #2 (value 75)",
+        "args": [
+          "run-check.ts",
+          "--watcher",
+          "verify",
+          "--no-action",
+          "--fetch-block",
+          "--value",
+          "75"
+        ],
+        "exit": 0,
+        "signal": null,
+        "pid": 17056,
+        "durationMs": 2377,
+        "json": {
+          "ok": true,
+          "pid": 17056,
+          "watcherId": "verify",
+          "dataDir": "C:\\pharos Trend Watcher\\.data\\watcher-verify",
+          "mode": "observe",
+          "metricSource": "synthetic_scenario",
+          "deduplicated": false,
+          "duplicatesIgnoredTotal": 0,
+          "walRecovered": 0,
+          "index": 2,
+          "observationId": "0x8359b1c5a641bffec0c518d8a09ae273bcc50896637c670fc00855af339e72f2",
+          "blockNumber": 32539061,
+          "timestamp": 1794256956702,
+          "value": 75,
+          "deltaFromPrev": -25,
+          "deltaFromPrevBps": -2500,
+          "streakCount": 1,
+          "ruleStatus": "ACCUMULATING",
+          "isOutlier": true,
+          "madScore": null,
+          "triggered": false,
+          "reason": "accumulating: 1/3 consecutive falling checks",
+          "action": null,
+          "cooldownUntil": null,
+          "phase": "ACCUMULATING",
+          "historyLength": 2,
+          "actionError": null
+        }
+      },
+      {
+        "phase": "A",
+        "label": "check #3 (value 99)",
+        "args": [
+          "run-check.ts",
+          "--watcher",
+          "verify",
+          "--no-action",
+          "--fetch-block",
+          "--value",
+          "99"
+        ],
+        "exit": 0,
+        "signal": null,
+        "pid": 13484,
+        "durationMs": 2298,
+        "json": {
+          "ok": true,
+          "pid": 13484,
+          "watcherId": "verify",
+          "dataDir": "C:\\pharos Trend Watcher\\.data\\watcher-verify",
+          "mode": "observe",
+          "metricSource": "synthetic_scenario",
+          "deduplicated": false,
+          "duplicatesIgnoredTotal": 0,
+          "walRecovered": 0,
+          "index": 3,
+          "observationId": "0x7ff2a540b038d4cc913b1271bb83a7ca1326a9a5f6d371e3f78c71259eca826a",
+          "blockNumber": 32539066,
+          "timestamp": 1794256961119,
+          "value": 99,
+          "deltaFromPrev": 24,
+          "deltaFromPrevBps": 3200,
+          "streakCount": 0,
+          "ruleStatus": "SPIKE_REJECTED",
+          "isOutlier": true,
+          "madScore": null,
+          "triggered": false,
+          "reason": "single-spike recovery: huge one-check move followed by a counter-move — streak reset, NO action",
+          "action": null,
+          "cooldownUntil": null,
+          "phase": "ACCUMULATING",
+          "historyLength": 3,
+          "actionError": null
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "name": "A: 3 observations stored",
+        "pass": true,
+        "details": "historyLength=3"
+      },
+      {
+        "name": "A: spike flagged as outlier",
+        "pass": true,
+        "details": "obs2.isOutlier=true"
+      },
+      {
+        "name": "A: recovery → SPIKE_REJECTED",
+        "pass": true,
+        "details": "status=SPIKE_REJECTED"
+      },
+      {
+        "name": "A: streak reset to 0",
+        "pass": true,
+        "details": "streak=0"
+      },
+      {
+        "name": "A: NEVER triggered",
+        "pass": true,
+        "details": "0 triggers"
+      },
+      {
+        "name": "A: 0 txs broadcast",
+        "pass": true,
+        "details": "no actions"
+      },
+      {
+        "name": "A: distinct PIDs (cold starts)",
+        "pass": true,
+        "details": "pids=11120, 17056, 13484"
+      }
+    ]
+  },
+  "phaseB_restartAndReplay": {
+    "description": "Replay of the same block/window is deduplicated; a hard SIGKILL mid-run loses nothing (WAL recovery) and re-polls do not duplicate history.",
+    "runs": [
+      {
+        "phase": "B",
+        "label": "replay-last (same block/window re-polled)",
+        "args": [
+          "run-check.ts",
+          "--watcher",
+          "verify",
+          "--no-action",
+          "--replay-last"
+        ],
+        "exit": 0,
+        "signal": null,
+        "pid": 16784,
+        "durationMs": 1976,
+        "json": {
+          "ok": true,
+          "pid": 16784,
+          "watcherId": "verify",
+          "dataDir": "C:\\pharos Trend Watcher\\.data\\watcher-verify",
+          "mode": "replay-last",
+          "metricSource": "synthetic_scenario",
+          "deduplicated": true,
+          "duplicatesIgnoredTotal": 1,
+          "walRecovered": 0,
+          "index": null,
+          "observationId": null,
+          "blockNumber": null,
+          "timestamp": null,
+          "value": 99,
+          "deltaFromPrev": null,
+          "deltaFromPrevBps": null,
+          "streakCount": null,
+          "ruleStatus": null,
+          "isOutlier": null,
+          "madScore": null,
+          "triggered": false,
+          "reason": "duplicate replay ignored (idempotency key already observed)",
+          "action": null,
+          "cooldownUntil": null,
+          "phase": "ACCUMULATING",
+          "historyLength": 3,
+          "actionError": null
+        }
+      },
+      {
+        "phase": "B",
+        "label": "HARD CRASH (SIGKILL mid-run, value 96)",
+        "args": [
+          "run-check.ts",
+          "--inject-crash=sigkill"
+        ],
+        "exit": 1,
+        "signal": null,
+        "pid": null,
+        "durationMs": 2170,
+        "json": null
+      },
+      {
+        "phase": "B",
+        "label": "recovery run (replay-last after crash)",
+        "args": [
+          "run-check.ts",
+          "--watcher",
+          "verify",
+          "--no-action",
+          "--replay-last"
+        ],
+        "exit": 0,
+        "signal": null,
+        "pid": 18384,
+        "durationMs": 1958,
+        "json": {
+          "ok": true,
+          "pid": 18384,
+          "watcherId": "verify",
+          "dataDir": "C:\\pharos Trend Watcher\\.data\\watcher-verify",
+          "mode": "replay-last",
+          "metricSource": "synthetic_scenario",
+          "deduplicated": true,
+          "duplicatesIgnoredTotal": 2,
+          "walRecovered": 1,
+          "index": null,
+          "observationId": null,
+          "blockNumber": null,
+          "timestamp": null,
+          "value": 96,
+          "deltaFromPrev": null,
+          "deltaFromPrevBps": null,
+          "streakCount": null,
+          "ruleStatus": null,
+          "isOutlier": null,
+          "madScore": null,
+          "triggered": false,
+          "reason": "duplicate replay ignored (idempotency key already observed)",
+          "action": null,
+          "cooldownUntil": null,
+          "phase": "ACCUMULATING",
+          "historyLength": 4,
+          "actionError": null
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "name": "B: replay deduplicated",
+        "pass": true,
+        "details": "dedup=true"
+      },
+      {
+        "name": "B: duplicatesIgnored == 1",
+        "pass": true,
+        "details": "count=1"
+      },
+      {
+        "name": "B: history length intact (3)",
+        "pass": true,
+        "details": "length=3"
+      },
+      {
+        "name": "B: crash was abnormal (SIGKILL/137)",
+        "pass": true,
+        "details": "signal=null exit=1"
+      },
+      {
+        "name": "B: WAL tail recovered",
+        "pass": true,
+        "details": "walRecovered=1"
+      },
+      {
+        "name": "B: recovered obs committed (history=4)",
+        "pass": true,
+        "details": "length=4"
+      },
+      {
+        "name": "B: replay after recovery deduped",
+        "pass": true,
+        "details": "dedup=true"
+      },
+      {
+        "name": "B: duplicatesIgnored == 2 total",
+        "pass": true,
+        "details": "count=2"
+      },
+      {
+        "name": "B: hash-chain intact after crash+recovery",
+        "pass": true,
+        "details": "integrity=OK"
+      }
+    ]
+  },
+  "phaseC_confirmedTrendOnChain": {
+    "description": "Live Pharos Atlantic state observed by 4 separate OS processes; trigger pinpointed at the 3rd consecutive drop (observation #4); protective action broadcast on-chain with the trendProofDigest; cooldown lock proven.",
+    "runs": [
+      {
+        "phase": "C",
+        "label": "live check #1",
+        "args": [
+          "run-check.ts",
+          "--watcher",
+          "verify",
+          "--metric",
+          "onchain_erc20_balance"
+        ],
+        "exit": 0,
+        "signal": null,
+        "pid": 12444,
+        "durationMs": 2782,
+        "json": {
+          "ok": true,
+          "pid": 12444,
+          "watcherId": "verify",
+          "dataDir": "C:\\pharos Trend Watcher\\.data\\watcher-verify",
+          "mode": "observe",
+          "metricSource": "onchain_erc20_balance:0xcfC8330f4BCAB529c625D12781b1C19466A9Fc8B",
+          "deduplicated": false,
+          "duplicatesIgnoredTotal": 0,
+          "walRecovered": 0,
+          "index": 1,
+          "observationId": "0x5b8f8f16742c286d3ddc9df9b765e5adc9e55d0f0682a5047751e662ff96e6bc",
+          "blockNumber": 32539073,
+          "timestamp": 1794256969951,
+          "value": 19.2888,
+          "deltaFromPrev": null,
+          "deltaFromPrevBps": null,
+          "streakCount": 0,
+          "ruleStatus": "ACCUMULATING",
+          "isOutlier": false,
+          "madScore": null,
+          "triggered": false,
+          "reason": "accumulating: 0/3 consecutive falling checks",
+          "action": null,
+          "cooldownUntil": null,
+          "phase": "IDLE",
+          "historyLength": 1,
+          "actionError": null
+        }
+      },
+      {
+        "phase": "C",
+        "label": "live check #2",
+        "args": [
+          "run-check.ts",
+          "--watcher",
+          "verify",
+          "--metric",
+          "onchain_erc20_balance"
+        ],
+        "exit": 0,
+        "signal": null,
+        "pid": 9336,
+        "durationMs": 2882,
+        "json": {
+          "ok": true,
+          "pid": 9336,
+          "watcherId": "verify",
+          "dataDir": "C:\\pharos Trend Watcher\\.data\\watcher-verify",
+          "mode": "observe",
+          "metricSource": "onchain_erc20_balance:0xcfC8330f4BCAB529c625D12781b1C19466A9Fc8B",
+          "deduplicated": false,
+          "duplicatesIgnoredTotal": 0,
+          "walRecovered": 0,
+          "index": 2,
+          "observationId": "0x8ca8dc892bff6e5fb6b5a3dba52192c348f90e9575f40edd056793d993cf48e1",
+          "blockNumber": 32539082,
+          "timestamp": 1794256979585,
+          "value": 19.2887,
+          "deltaFromPrev": -0.00009999999999976694,
+          "deltaFromPrevBps": -0.051843556882629795,
+          "streakCount": 1,
+          "ruleStatus": "ACCUMULATING",
+          "isOutlier": false,
+          "madScore": null,
+          "triggered": false,
+          "reason": "accumulating: 1/3 consecutive falling checks",
+          "action": null,
+          "cooldownUntil": null,
+          "phase": "ACCUMULATING",
+          "historyLength": 2,
+          "actionError": null
+        }
+      },
+      {
+        "phase": "C",
+        "label": "live check #3",
+        "args": [
+          "run-check.ts",
+          "--watcher",
+          "verify",
+          "--metric",
+          "onchain_erc20_balance"
+        ],
+        "exit": 0,
+        "signal": null,
+        "pid": 1904,
+        "durationMs": 2689,
+        "json": {
+          "ok": true,
+          "pid": 1904,
+          "watcherId": "verify",
+          "dataDir": "C:\\pharos Trend Watcher\\.data\\watcher-verify",
+          "mode": "observe",
+          "metricSource": "onchain_erc20_balance:0xcfC8330f4BCAB529c625D12781b1C19466A9Fc8B",
+          "deduplicated": false,
+          "duplicatesIgnoredTotal": 0,
+          "walRecovered": 0,
+          "index": 3,
+          "observationId": "0x0c6ecd979e0dcd8c1f497da09abc5763a61bcff4b81a0bcf2034f22ed5bca465",
+          "blockNumber": 32539093,
+          "timestamp": 1794256988863,
+          "value": 19.2886,
+          "deltaFromPrev": -0.00009999999999976694,
+          "deltaFromPrevBps": -0.051843825659462245,
+          "streakCount": 2,
+          "ruleStatus": "ACCUMULATING",
+          "isOutlier": false,
+          "madScore": null,
+          "triggered": false,
+          "reason": "accumulating: 2/3 consecutive falling checks",
+          "action": null,
+          "cooldownUntil": null,
+          "phase": "ACCUMULATING",
+          "historyLength": 3,
+          "actionError": null
+        }
+      },
+      {
+        "phase": "C",
+        "label": "live check #4 — 3rd consecutive drop → ACT",
+        "args": [
+          "run-check.ts",
+          "--watcher",
+          "verify",
+          "--metric",
+          "onchain_erc20_balance"
+        ],
+        "exit": 0,
+        "signal": null,
+        "pid": 10268,
+        "durationMs": 4818,
+        "json": {
+          "ok": true,
+          "pid": 10268,
+          "watcherId": "verify",
+          "dataDir": "C:\\pharos Trend Watcher\\.data\\watcher-verify",
+          "mode": "observe",
+          "metricSource": "onchain_erc20_balance:0xcfC8330f4BCAB529c625D12781b1C19466A9Fc8B",
+          "deduplicated": false,
+          "duplicatesIgnoredTotal": 0,
+          "walRecovered": 0,
+          "index": 4,
+          "observationId": "0xcffdd8e3395ac85233933da794dfc6acc768d6a33b25916ff154a10d73cafe14",
+          "blockNumber": 32539103,
+          "timestamp": 1794256998104,
+          "value": 19.2885,
+          "deltaFromPrev": -0.00009999999999976694,
+          "deltaFromPrevBps": -0.051844094439081605,
+          "streakCount": 3,
+          "ruleStatus": "TRIGGERED_ACTING",
+          "isOutlier": false,
+          "madScore": null,
+          "triggered": true,
+          "reason": "3 consecutive falling checks confirmed",
+          "action": {
+            "txHash": "0x0fc195b320bbc90f5683bd560eb7712266980ffcfa9fc3ec9e73b71dba5a16ab",
+            "explorerUrl": "https://atlantic.pharosscan.xyz/tx/0x0fc195b320bbc90f5683bd560eb7712266980ffcfa9fc3ec9e73b71dba5a16ab",
+            "mode": "ANCHOR_CONTRACT"
+          },
+          "cooldownUntil": 1794258798104,
+          "phase": "ACTED_LOCKED",
+          "historyLength": 4,
+          "actionError": null
+        }
+      },
+      {
+        "phase": "C",
+        "label": "post-trigger check (same metric, falling while locked → cooldown expected)",
+        "args": [
+          "run-check.ts",
+          "--watcher",
+          "verify",
+          "--metric",
+          "onchain_erc20_balance"
+        ],
+        "exit": 0,
+        "signal": null,
+        "pid": 17400,
+        "durationMs": 2813,
+        "json": {
+          "ok": true,
+          "pid": 17400,
+          "watcherId": "verify",
+          "dataDir": "C:\\pharos Trend Watcher\\.data\\watcher-verify",
+          "mode": "observe",
+          "metricSource": "onchain_erc20_balance:0xcfC8330f4BCAB529c625D12781b1C19466A9Fc8B",
+          "deduplicated": false,
+          "duplicatesIgnoredTotal": 0,
+          "walRecovered": 0,
+          "index": 5,
+          "observationId": "0x4df4083b9f893ebdd5f4663d2c225a6459eb158b576beb36afbb7ccae6b1c4d1",
+          "blockNumber": 32539115,
+          "timestamp": 1794257009059,
+          "value": 19.2884,
+          "deltaFromPrev": -0.00009999999999976694,
+          "deltaFromPrevBps": -0.05184436322148791,
+          "streakCount": 0,
+          "ruleStatus": "COOLDOWN",
+          "isOutlier": false,
+          "madScore": 1.3490025001428694,
+          "triggered": false,
+          "reason": "cooldown lock (ACTED_LOCKED): hysteresis guard active, no new action",
+          "action": null,
+          "cooldownUntil": 1794258798104,
+          "phase": "ACTED_LOCKED",
+          "historyLength": 5,
+          "actionError": null
+        }
+      }
+    ],
+    "triggerRecord": {
+      "triggerObservationIndex": 4,
+      "observationId": "0xcffdd8e3395ac85233933da794dfc6acc768d6a33b25916ff154a10d73cafe14",
+      "blockNumber": 32539103,
+      "timestamp": 1794256998104,
+      "window": [
+        {
+          "index": 1,
+          "observationId": "0x5b8f8f16742c286d3ddc9df9b765e5adc9e55d0f0682a5047751e662ff96e6bc",
+          "observationHash": "0x507a9399f2b7df584e3f82180a89ff5d7ac967ce688f74b4bd31f2f2e4f86159",
+          "prevObservationHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+          "runProcessPid": 12444,
+          "blockNumber": 32539073,
+          "timestamp": 1794256969951,
+          "timestampBucket": 29904282,
+          "metricSource": "onchain_erc20_balance:0xcfC8330f4BCAB529c625D12781b1C19466A9Fc8B",
+          "value": 19.2888,
+          "deltaFromPrev": null,
+          "deltaFromPrevBps": null,
+          "streakCount": 0,
+          "ruleStatus": "ACCUMULATING",
+          "isOutlier": false,
+          "madScore": null
+        },
+        {
+          "index": 2,
+          "observationId": "0x8ca8dc892bff6e5fb6b5a3dba52192c348f90e9575f40edd056793d993cf48e1",
+          "observationHash": "0x844fc94272021c249d136a63c2a2293d8c9d8adfcd11cdde810d9737d4d2cafb",
+          "prevObservationHash": "0x507a9399f2b7df584e3f82180a89ff5d7ac967ce688f74b4bd31f2f2e4f86159",
+          "runProcessPid": 9336,
+          "blockNumber": 32539082,
+          "timestamp": 1794256979585,
+          "timestampBucket": 29904282,
+          "metricSource": "onchain_erc20_balance:0xcfC8330f4BCAB529c625D12781b1C19466A9Fc8B",
+          "value": 19.2887,
+          "deltaFromPrev": -0.00009999999999976694,
+          "deltaFromPrevBps": -0.051843556882629795,
+          "streakCount": 1,
+          "ruleStatus": "ACCUMULATING",
+          "isOutlier": false,
+          "madScore": null
+        },
+        {
+          "index": 3,
+          "observationId": "0x0c6ecd979e0dcd8c1f497da09abc5763a61bcff4b81a0bcf2034f22ed5bca465",
+          "observationHash": "0xbc63eb59be9984568ad90b36beba89f5e99c2598a1d98142b5ef419132568a66",
+          "prevObservationHash": "0x844fc94272021c249d136a63c2a2293d8c9d8adfcd11cdde810d9737d4d2cafb",
+          "runProcessPid": 1904,
+          "blockNumber": 32539093,
+          "timestamp": 1794256988863,
+          "timestampBucket": 29904283,
+          "metricSource": "onchain_erc20_balance:0xcfC8330f4BCAB529c625D12781b1C19466A9Fc8B",
+          "value": 19.2886,
+          "deltaFromPrev": -0.00009999999999976694,
+          "deltaFromPrevBps": -0.051843825659462245,
+          "streakCount": 2,
+          "ruleStatus": "ACCUMULATING",
+          "isOutlier": false,
+          "madScore": null
+        },
+        {
+          "index": 4,
+          "observationId": "0xcffdd8e3395ac85233933da794dfc6acc768d6a33b25916ff154a10d73cafe14",
+          "observationHash": "0xfffc7c3744e34593dd04cd4ccb4ff6cd15b409433438da50914ddc523710b2a6",
+          "prevObservationHash": "0xbc63eb59be9984568ad90b36beba89f5e99c2598a1d98142b5ef419132568a66",
+          "runProcessPid": 10268,
+          "blockNumber": 32539103,
+          "timestamp": 1794256998104,
+          "timestampBucket": 29904283,
+          "metricSource": "onchain_erc20_balance:0xcfC8330f4BCAB529c625D12781b1C19466A9Fc8B",
+          "value": 19.2885,
+          "deltaFromPrev": -0.00009999999999976694,
+          "deltaFromPrevBps": -0.051844094439081605,
+          "streakCount": 3,
+          "ruleStatus": "TRIGGERED_ACTING",
+          "isOutlier": false,
+          "madScore": null
+        }
+      ],
+      "ruleHash": "0x54b8e2bcd5fea0f1c63368c9c887b92056780f34b0b15234c77e565474e19927",
+      "trendProofDigest": "0x18d77037e5f7e8876c68bc2effb56a6af3c4a2ccb8ffbc23bdfbf2458be8a010",
+      "txHash": "0x0fc195b320bbc90f5683bd560eb7712266980ffcfa9fc3ec9e73b71dba5a16ab",
+      "explorerUrl": "https://atlantic.pharosscan.xyz/tx/0x0fc195b320bbc90f5683bd560eb7712266980ffcfa9fc3ec9e73b71dba5a16ab",
+      "actionMode": "ANCHOR_CONTRACT",
+      "anchoredAt": 1794256998287
+    },
+    "action": {
+      "txHash": "0x0fc195b320bbc90f5683bd560eb7712266980ffcfa9fc3ec9e73b71dba5a16ab",
+      "explorerUrl": "https://atlantic.pharosscan.xyz/tx/0x0fc195b320bbc90f5683bd560eb7712266980ffcfa9fc3ec9e73b71dba5a16ab",
+      "mode": "ANCHOR_CONTRACT"
+    },
+    "onChainProof": {
+      "mode": "ANCHOR_CONTRACT",
+      "proofDigest": "0x18d77037e5f7e8876c68bc2effb56a6af3c4a2ccb8ffbc23bdfbf2458be8a010",
+      "isAnchored": null,
+      "eventDecoded": {
+        "proofDigest": "0x18d77037e5f7e8876c68bc2effb56a6af3c4a2ccb8ffbc23bdfbf2458be8a010",
+        "ruleHash": "0x54b8e2bcd5fea0f1c63368c9c887b92056780f34b0b15234c77e565474e19927",
+        "watcher": "0x299Ce4113abF88F4997737184aa8A7a3D58AC15C",
+        "triggerIndex": 4,
+        "windowObservationHashes": [
+          "0x507a9399f2b7df584e3f82180a89ff5d7ac967ce688f74b4bd31f2f2e4f86159",
+          "0x844fc94272021c249d136a63c2a2293d8c9d8adfcd11cdde810d9737d4d2cafb",
+          "0xbc63eb59be9984568ad90b36beba89f5e99c2598a1d98142b5ef419132568a66",
+          "0xfffc7c3744e34593dd04cd4ccb4ff6cd15b409433438da50914ddc523710b2a6"
+        ],
+        "blockNumber": 32539106
+      },
+      "watcher": null,
+      "triggerIndex": null,
+      "txReceiptStatus": "success",
+      "blockNumber": 32539106,
+      "gasUsed": "146324"
+    },
+    "assertions": [
+      {
+        "name": "C: 5 observations stored (4 + cooldown check)",
+        "pass": true,
+        "details": "historyLength=5"
+      },
+      {
+        "name": "C: values strictly falling",
+        "pass": true,
+        "details": "values=19.2888 → 19.2887 → 19.2886 → 19.2885"
+      },
+      {
+        "name": "C: streak 0→1→2→3",
+        "pass": true,
+        "details": "streaks=0,1,2,3"
+      },
+      {
+        "name": "C: trigger EXACTLY at the 3rd consecutive drop (obs #4)",
+        "pass": true,
+        "details": "triggered=[false,false,false,true]"
+      },
+      {
+        "name": "C: trigger observation index == 4",
+        "pass": true,
+        "details": "index=4"
+      },
+      {
+        "name": "C: real tx broadcast on 688689",
+        "pass": true,
+        "details": "tx=0x0fc195b320bbc90f5683bd560eb7712266980ffcfa9fc3ec9e73b71dba5a16ab"
+      },
+      {
+        "name": "C: cooldown engaged (phase ACTED_LOCKED)",
+        "pass": true,
+        "details": "phase=ACTED_LOCKED"
+      },
+      {
+        "name": "C: post-trigger check → COOLDOWN, no duplicate tx",
+        "pass": true,
+        "details": "status=COOLDOWN action=none"
+      },
+      {
+        "name": "C: exactly ONE trigger record",
+        "pass": true,
+        "details": "records=1"
+      },
+      {
+        "name": "C: TrendAnchored event present in the anchor tx receipt",
+        "pass": true,
+        "details": "logs=1"
+      },
+      {
+        "name": "C: event proofDigest == local trendProofDigest",
+        "pass": true,
+        "details": "0x18d77037e5f7e887…"
+      },
+      {
+        "name": "C: event carries the exact window observation hashes",
+        "pass": true,
+        "details": "windowHashes=4"
+      },
+      {
+        "name": "C: anchor tx confirmed on 688689",
+        "pass": true,
+        "details": "block=32539106 gas=146324"
+      }
+    ]
+  },
+  "allAssertions": [
+    {
+      "name": "A: 3 observations stored",
+      "pass": true,
+      "details": "historyLength=3"
+    },
+    {
+      "name": "A: spike flagged as outlier",
+      "pass": true,
+      "details": "obs2.isOutlier=true"
+    },
+    {
+      "name": "A: recovery → SPIKE_REJECTED",
+      "pass": true,
+      "details": "status=SPIKE_REJECTED"
+    },
+    {
+      "name": "A: streak reset to 0",
+      "pass": true,
+      "details": "streak=0"
+    },
+    {
+      "name": "A: NEVER triggered",
+      "pass": true,
+      "details": "0 triggers"
+    },
+    {
+      "name": "A: 0 txs broadcast",
+      "pass": true,
+      "details": "no actions"
+    },
+    {
+      "name": "A: distinct PIDs (cold starts)",
+      "pass": true,
+      "details": "pids=11120, 17056, 13484"
+    },
+    {
+      "name": "B: replay deduplicated",
+      "pass": true,
+      "details": "dedup=true"
+    },
+    {
+      "name": "B: duplicatesIgnored == 1",
+      "pass": true,
+      "details": "count=1"
+    },
+    {
+      "name": "B: history length intact (3)",
+      "pass": true,
+      "details": "length=3"
+    },
+    {
+      "name": "B: crash was abnormal (SIGKILL/137)",
+      "pass": true,
+      "details": "signal=null exit=1"
+    },
+    {
+      "name": "B: WAL tail recovered",
+      "pass": true,
+      "details": "walRecovered=1"
+    },
+    {
+      "name": "B: recovered obs committed (history=4)",
+      "pass": true,
+      "details": "length=4"
+    },
+    {
+      "name": "B: replay after recovery deduped",
+      "pass": true,
+      "details": "dedup=true"
+    },
+    {
+      "name": "B: duplicatesIgnored == 2 total",
+      "pass": true,
+      "details": "count=2"
+    },
+    {
+      "name": "B: hash-chain intact after crash+recovery",
+      "pass": true,
+      "details": "integrity=OK"
+    },
+    {
+      "name": "C: 5 observations stored (4 + cooldown check)",
+      "pass": true,
+      "details": "historyLength=5"
+    },
+    {
+      "name": "C: values strictly falling",
+      "pass": true,
+      "details": "values=19.2888 → 19.2887 → 19.2886 → 19.2885"
+    },
+    {
+      "name": "C: streak 0→1→2→3",
+      "pass": true,
+      "details": "streaks=0,1,2,3"
+    },
+    {
+      "name": "C: trigger EXACTLY at the 3rd consecutive drop (obs #4)",
+      "pass": true,
+      "details": "triggered=[false,false,false,true]"
+    },
+    {
+      "name": "C: trigger observation index == 4",
+      "pass": true,
+      "details": "index=4"
+    },
+    {
+      "name": "C: real tx broadcast on 688689",
+      "pass": true,
+      "details": "tx=0x0fc195b320bbc90f5683bd560eb7712266980ffcfa9fc3ec9e73b71dba5a16ab"
+    },
+    {
+      "name": "C: cooldown engaged (phase ACTED_LOCKED)",
+      "pass": true,
+      "details": "phase=ACTED_LOCKED"
+    },
+    {
+      "name": "C: post-trigger check → COOLDOWN, no duplicate tx",
+      "pass": true,
+      "details": "status=COOLDOWN action=none"
+    },
+    {
+      "name": "C: exactly ONE trigger record",
+      "pass": true,
+      "details": "records=1"
+    },
+    {
+      "name": "C: TrendAnchored event present in the anchor tx receipt",
+      "pass": true,
+      "details": "logs=1"
+    },
+    {
+      "name": "C: event proofDigest == local trendProofDigest",
+      "pass": true,
+      "details": "0x18d77037e5f7e887…"
+    },
+    {
+      "name": "C: event carries the exact window observation hashes",
+      "pass": true,
+      "details": "windowHashes=4"
+    },
+    {
+      "name": "C: anchor tx confirmed on 688689",
+      "pass": true,
+      "details": "block=32539106 gas=146324"
+    }
+  ]
+}

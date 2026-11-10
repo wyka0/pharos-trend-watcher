@@ -1,0 +1,300 @@
+{
+  "contractName": "TrendAnchor",
+  "compiler": {
+    "solc": "0.8.38+commit.1835d247.Emscripten.clang",
+    "settings": "optimizer enabled, 200 runs"
+  },
+  "abi": [
+    {
+      "inputs": [],
+      "name": "AlreadyAnchored",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "EmptyWindow",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "proofDigest",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "ruleHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "watcher",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "triggerIndex",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32[]",
+          "name": "windowObservationHashes",
+          "type": "bytes32[]"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "blockNumber",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "timestamp",
+          "type": "uint64"
+        }
+      ],
+      "name": "TrendAnchored",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "ruleHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "proofDigest",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "triggerIndex",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32[]",
+          "name": "windowObservationHashes",
+          "type": "bytes32[]"
+        }
+      ],
+      "name": "anchor",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "proofDigest",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getProof",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "watcher",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "ruleHash",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "proofDigest",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "uint256",
+              "name": "triggerIndex",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint64",
+              "name": "blockNumber",
+              "type": "uint64"
+            },
+            {
+              "internalType": "uint64",
+              "name": "timestamp",
+              "type": "uint64"
+            }
+          ],
+          "internalType": "struct TrendAnchor.Proof",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "proofDigest",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getProofBlockNumber",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "proofDigest",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getProofRuleHash",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "proofDigest",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getProofTriggerIndex",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "proofDigest",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getProofWatcher",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "proofDigest",
+          "type": "bytes32"
+        }
+      ],
+      "name": "isAnchored",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "proofs",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "watcher",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "ruleHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "proofDigest",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "triggerIndex",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint64",
+          "name": "blockNumber",
+          "type": "uint64"
+        },
+        {
+          "internalType": "uint64",
+          "name": "timestamp",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalAnchored",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x6080604052348015600e575f5ffd5b5061066b8061001c5f395ff3fe608060405234801561000f575f5ffd5b5060043610610090575f3560e01c80635dcc7d5f116100635780635dcc7d5f146102c0578063a212e36f14610300578063a380d88514610309578063aa4170d41461032b578063bd1d024a1461036e575f5ffd5b80631b80bb3a14610094578063444d95b0146101af5780634c3345a81461024c5780634f0b58011461027c575b5f5ffd5b6101416100a2366004610541565b6040805160c0810182525f80825260208201819052918101829052606081018290526080810182905260a0810191909152505f9081526020818152604091829020825160c08101845281546001600160a01b03168152600182015492810192909252600281015492820192909252600382015460608201526004909101546001600160401b038082166080840152600160401b9091041660a082015290565b6040516101a691905f60c08201905060018060a01b0383511682526020830151602083015260408301516040830152606083015160608301526001600160401b0360808401511660808301526001600160401b0360a08401511660a083015292915050565b60405180910390f35b6102096101bd366004610541565b5f60208190529081526040902080546001820154600283015460038401546004909401546001600160a01b039093169391929091906001600160401b0380821691600160401b90041686565b604080516001600160a01b03909716875260208701959095529385019290925260608401526001600160401b0390811660808401521660a082015260c0016101a6565b61026e61025a366004610541565b5f9081526020819052604090206003015490565b6040519081526020016101a6565b6102b061028a366004610541565b5f90815260208190526040902060040154600160401b90046001600160401b0316151590565b60405190151581526020016101a6565b6102e86102ce366004610541565b5f908152602081905260409020546001600160a01b031690565b6040516001600160a01b0390911681526020016101a6565b61026e60015481565b61026e610317366004610541565b5f9081526020819052604090206001015490565b610356610339366004610541565b5f908152602081905260409020600401546001600160401b031690565b6040516001600160401b0390911681526020016101a6565b61038161037c366004610558565b610383565b005b60038110156103a55760405163d2c0367760e01b815260040160405180910390fd5b5f84815260208190526040902060040154600160401b90046001600160401b0316156103e45760405163a0094ce360e01b815260040160405180910390fd5b6040518060c00160405280336001600160a01b03168152602001868152602001858152602001848152602001436001600160401b03168152602001426001600160401b03168152505f5f8681526020019081526020015f205f820151815f015f6101000a8154816001600160a01b0302191690836001600160a01b031602179055506020820151816001015560408201518160020155606082015181600301556080820151816004015f6101000a8154816001600160401b0302191690836001600160401b0316021790555060a08201518160040160086101000a8154816001600160401b0302191690836001600160401b0316021790555090505060015f815460010191905081905550336001600160a01b031685857f3493e669fa0fb0da8b62d008e17ac91eb54addef02f80c51adda5491bc99e7d686868643426040516105329594939291906105e0565b60405180910390a45050505050565b5f60208284031215610551575f5ffd5b5035919050565b5f5f5f5f5f6080868803121561056c575f5ffd5b85359450602086013593506040860135925060608601356001600160401b03811115610596575f5ffd5b8601601f810188136105a6575f5ffd5b80356001600160401b038111156105bb575f5ffd5b8860208260051b84010111156105cf575f5ffd5b959894975092955050506020019190565b85815260806020820181905281018490525f6001600160fb1b03851115610605575f5ffd5b8460051b808760a08501376001600160401b0394851660408401529290931660608201520160a00194935050505056fea2646970667358221220eacdd33426c1b5f2442f24c94fd5d3cd300cb72c1138c89525ccfcbbb56f496164736f6c63430008260033"
+}

@@ -1,0 +1,36 @@
+# ---------------------------------------------------------------------------
+# Pharos Trend Watcher — git ignore policy
+# Secrets are NEVER tracked. Deterministic run evidence in evidence/ IS tracked.
+# ---------------------------------------------------------------------------
+
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+next-env.d.ts
+
+# Environment & secrets — NEVER commit (except the placeholder example)
+.env
+.env.local
+.env.*.local
+.env.*
+!.env.example
+
+# Runtime persistent state (watcher disk storage, WAL, anchor cache, archives)
+.data/
+
+# Logs & temp artifacts
+*.log
+npm-debug.log*
+*.tsbuildinfo
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# ---------------------------------------------------------------------------
+# NOTE: evidence/ is intentionally TRACKED (deterministic verification
+# transcripts for reviewers). SUBMISSION_EVIDENCE.md is tracked as well.
+# ---------------------------------------------------------------------------
